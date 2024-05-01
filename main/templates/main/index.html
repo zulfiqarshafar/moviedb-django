@@ -1,1 +1,12 @@
-<h1>This is template file</h1>
+{% extends "main/base.html" %}
+
+{% block content %}
+<h1>All Movies in the Database</h1>
+
+<ul>
+{% for movie in movies %}
+    <li>{{ movie.name }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
