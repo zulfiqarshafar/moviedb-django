@@ -1,13 +1,29 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import *
+from django.views.generic import View
+from main.models import Movie
 
-# Create your views here.
-def home(request):
-    allMovies = Movie.objects.all()
+class HomeView(View):
+    def get(self, request):
+        query = request.GET.get("search")
 
-    context = {
-        "movies": allMovies,
-    }
+        if query:
+            allMovies = Movie.objects.filter(name__icontains=query)
+        else:
+            allMovies = Movie.objects.all()
 
-    return render(request, 'main/index.html', context)
+        context = {
+            "movies": allMovies,
+        }
+
+        return render(request, 'main/index.html', context)
+
+
+class DetailView(View):
+    def get(self, request, id):
+        movie = Movie.objects.get(id=id)
+
+        context = {
+            "movie": movie,
+        }
+
+        return render(request, 'main/detail.html', context)
