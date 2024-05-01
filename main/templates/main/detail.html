@@ -1,0 +1,38 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+<article>
+    <header>
+        <button onClick="onClickBack()" class="back-button">&#x2190; Back</button>
+        <h1>{{ movie.name }} </h1>
+        <h4>{{ movie.mpaaRating.type }}: {{ movie.mpaaRating.label }}</h4>
+    </header>
+    <section class="movie-detail">
+        <img src="/media/{{ movie.imgPath }}" alt="Movie poster" width="400px">
+        <div>
+            <section class="movie-details">
+                <h4>Details</h4>
+                <p>Genre: {{ movie.genre.all|join:", " }}</p>
+                <p>Language: {{ movie.language }}</p>
+                <p>Duration: {{ movie.duration }} minutes</p>
+                <p>User Rating: {{ movie.userRating }}</p>
+            </section>
+            <section class="movie-synopsis">
+                <h4>Synopsis</h4>
+                <p>{{ movie.description }}</p>
+            </section>
+        </div>
+    </section>
+
+</article>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    function onClickBack() {
+        history.go(-1);
+    }
+</script>
+{% endblock %}

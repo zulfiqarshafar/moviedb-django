@@ -1,0 +1,26 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+<article class="movie-list">
+{% if movies %}
+    {% for movie in movies %}
+        <a href="{% url 'main:detail' movie.id %}" class="movie-item-container">
+            <section class="movie-item">
+                <div class='movie-poster-container'>
+                    <img src="/media/{{ movie.imgPath }}" alt="Movie poster">
+                </div>
+                <div class="movie-list-detail">
+                    <h1>{{ movie.name }}</h1>
+                    <p>{{ movie.duration }} mins</p>
+                    <p>User rating: {{ movie.userRating }}</p>
+                </div>
+            </section>
+        </a>
+    {% endfor %}
+{% else %}
+    No result found!
+{% endif %}
+</article>
+
+{% endblock %}
