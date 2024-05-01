@@ -22,7 +22,7 @@ class Genre(models.Model):
 class Movie(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    imgPath = models.FileField(max_length=250, upload_to='assets/images/')
+    imgPath = models.ImageField(max_length=250, upload_to='assets/images/')
     duration = models.IntegerField()
     genre = models.ManyToManyField(Genre)
     language = models.CharField(max_length=50)
