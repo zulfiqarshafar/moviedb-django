@@ -9,3 +9,4 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('detail/<int:id>/', views.DetailView.as_view(), name='detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
++ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
